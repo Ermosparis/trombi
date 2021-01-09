@@ -1,8 +1,7 @@
 <%- include("../partials/header")%>
 
-<h1>Bienvenue sur le Trombi d'oclock</h1>
 <h2>Liste des promos</h2>
-<div style="text-align: center;"><a href="/">Accueil</a></div>
+<%- include('../partials/nav.ejs') %>
 <div class="d-flex">
 <ul class="list-group d-flex w-25 mx-auto justify-content-center">
     <% for (const promo of promos) { %>

@@ -1,4 +1,5 @@
 const dataMapper = require("../dataMapper")
+const { check, validationResult } = require('express-validator');
 
 
 exports.index = (req, res) => {
@@ -35,4 +36,46 @@ exports.getStudents = async(req,res,next)=>{
         console.error(error)
         next()   
     }
+}
+
+exports.validateInput=[
+    check('first_name')
+        .isAlpha()
+        .withMessage('Must be only alphabetical chars')
+        .isLength({ min: 2 })
+        .withMessage('Must be at least 2 chars long')
+        .trim()
+        .escape(),
+    check('last_name')
+        .isAlpha()
+        .withMessage('Must be only alphabetical chars')
+        .isLength({ min: 2 })
+        .withMessage('Must be at least 2 chars long')
+        .trim()
+        .escape(),
+    check('github_username')
+        .isAlpha()
+        .withMessage('Must be only alphabetical chars')
+        .isLength({ min: 2 })
+        .withMessage('Must be at least 2 chars long')
+        .trim()
+        .escape(),
+]
+
+exports.addStudent = async(req,res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array()})
+    } else{
+        const promo_id=req.body.promo;
+        const prenom=req.body.first_name;
+        const nom=req.body.last_name;
+        const gitPseudo=req.body.github_username;
+    try {
+        await dataMapper.addStudent(promo_id,prenom,nom,gitPseudo);
+        res.redirect(`/promos/${promo_id}`);
+    } catch (error) {
+        console.error(error)
+    }
+  }
 }

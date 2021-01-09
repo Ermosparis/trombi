@@ -1,8 +1,7 @@
 
 <%- include("../partials/header")%>
-<h2><a href="/promos">Liste des promos</a></h2>
-<h3>Promo <%= promoName %></h3>
-<div style="text-align: center;"><a href="/">Accueil</a> <a href="/admin/student/add">Ajouter un étudiant</a></div>
+<h2>Promo <%= promoName %></h2>
+<%- include('../partials/nav.ejs') %>
 <div class="container d-flex flex-wrap">
     <% for (student of promoStudents) { %>
         <div class="card m-2" style="width: 18rem;">
