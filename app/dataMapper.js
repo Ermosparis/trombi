@@ -1,12 +1,26 @@
 const client = require("./db")
 
-exports.getPromos = async() => { 
+//    WORKING CODE with callback
+
+// exports.getPromos = (callback) => {
+//     client.query(`SELECT * FROM "promo"`, (error, result) => {
+//         if (error) {
+//             console.trace(error);
+//             callback();
+//         }
+//         else callback(result.rows);
+//     });
+// }
+
+//    WORKING CODE
+
+    
+exports.getPromos=async()=>{
     try {
-        console.log("hello")
-        const promos = await client.query(`SELECT * FROM "promo";`);
-        console.log("promos(try)=", promos)      
+        const promos=await client.query(`SELECT * FROM "promo" ORDER BY name`);
+        return promos;
     } catch (error) {
-        console.error("Error(catch)=",error);
+        console.error(error)
     }
-};
+}
 

@@ -1,4 +1,13 @@
-body {
+h1{
+    text-align: center;
+    color: royalblue;
+}
+
+h2{
+    text-align: center;
+}
+
+/* body {
     background-color: #ccc;
 }
 
@@ -181,4 +190,4 @@ form button:active {
     .cards li {
         width: 20%;
     }
-}
+} */

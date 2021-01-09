@@ -1,12 +1,22 @@
 const dataMapper = require("../dataMapper")
-const client = require("../db")
 
 
 exports.index = (req, res) => {
     res.render("index");
 }
 
-exports.promos = async (res, req, next) => {
-    const promos= await client.query(`SELECT * FROM "promo"`);
-    res.render("promos",{promos})
+//    WORKING CODE
+
+// exports.promos = (req, res) => {
+//       dataMapper.getPromos((promos) => {
+//     if (!promos) next();
+//     else res.render("promos", { promos });
+//   });
+// }
+
+//    WORKING CODE
+
+exports.promosList = async (req,res)=>{
+    const promos= (await dataMapper.getPromos()).rows
+    res.render("promos", { promos});
 }

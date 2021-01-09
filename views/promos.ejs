@@ -1,9 +1,12 @@
 <%- include("partials/header")%>
 <h1>Bienvenue sur le Trombi d'oclock</h1>
-<a href="/promos">Liste des promos</a>
-<ul>
+<h2>Liste des promos</h2>
+
+<div class="d-flex">
+<ul class="list-group d-flex w-25 mx-auto justify-content-center">
     <% for (const promo of promos) { %>
-        <li><%=promo.name%></li>
+        <li><a href="<%=promo.id%>" class="list-group-item list-group-item-action "><%=promo.name%></a></li>
     <% } %>
 </ul>
+</div>
 <%- include("partials/footer")%>

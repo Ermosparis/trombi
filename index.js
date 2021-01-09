@@ -1,7 +1,7 @@
+require ('dotenv').config();
 const express= require('express');
 const path = require ('path');
 const router = require('./app/router');
-require ('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -14,6 +14,11 @@ app.use(express.static(path.join(__dirname,'public')));
 // app.use(express.urlencoded());
 
 app.use(router);
+
+app.use(function(req, res, next){
+    res.status(404);
+    res.render('404')
+});
 
 app.listen(PORT,()=>{
     console.log(`Server is running on ${PORT}`);
