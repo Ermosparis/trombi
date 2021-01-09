@@ -1,19 +1,4 @@
-const { Client } = require("pg");
 const client = require("./db")
-
-//    WORKING CODE with callback
-
-// exports.getPromos = (callback) => {
-//     client.query(`SELECT * FROM "promo"`, (error, result) => {
-//         if (error) {
-//             console.trace(error);
-//             callback();
-//         }
-//         else callback(result.rows);
-//     });
-// }
-
-//    WORKING CODE
 
     
 exports.getPromos=async()=>{
