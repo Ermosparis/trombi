@@ -1,0 +1,21 @@
+
+<%- include("../partials/header")%>
+<h2><a href="/promos">Liste des promos</a></h2>
+<h3>Promo <%= promoName %></h3>
+<div class="container d-flex flex-wrap">
+    <% for (student of promoStudents) { %>
+        <div class="card m-2" style="width: 18rem;">
+            <img class="card-img-top" src="<%= student.profile_picture_url %>" alt="<%= student.last_name %> <%= student.first_name %>">
+            <div class="card-body">
+              <h5 class="card-title"><%= student.last_name %> <%= student.first_name %></h5>
+              <p class="card-text">Eleve O'Clock</p>
+              <a href="#" class="btn btn-primary">Details</a>
+            </div>
+          </div>
+    <% } %>
+</div>
+<%- include("../partials/footer")%>
+
+
+
+

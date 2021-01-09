@@ -16,11 +16,13 @@ const client = require("./db")
 
     
 exports.getPromos=async()=>{
-    try {
-        const promos=await client.query(`SELECT * FROM "promo" ORDER BY name`);
-        return promos;
-    } catch (error) {
-        console.error(error)
-    }
+    const promos=await client.query(`SELECT * FROM "promo" ORDER BY name`);
+    return promos;
+}
+
+exports.getStudentsList=async(id)=>{
+    const promoStudents = await client.query('SELECT * FROM student WHERE promo_id=$1 ORDER BY last_name',[id]);
+    const promoName = await client.query('SELECT name FROM promo WHERE id=$1',[id]);
+    return [promoStudents,promoName];
 }
 
