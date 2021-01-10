@@ -20,3 +20,13 @@ exports.addStudent=async(id,prenom,nom,gitPseudo)=>{
     await client.query(sqlQueryInsertStudent,values)
 }
 
+exports.getStudentsPagination=async(limit,startIndex)=>{
+    const sqlQueryPagination =`
+    SELECT * 
+    FROM student
+    ORDER BY last_name 
+    LIMIT $1 OFFSET $2`;
+    const values=[limit,startIndex];
+    const results=await client.query(sqlQueryPagination,values);
+    return results;
+}

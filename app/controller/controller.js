@@ -81,10 +81,32 @@ exports.addStudent = async(req,res) => {
 }
 
 exports.getStudentsList=async(req,res)=>{
-    const {page}=req.query;
-    const{limit}=req.query;
+    const page = Number(req.query.page);
+    const limit = Number(req.query.limit);
+    console.log(page,limit)
+
+    const startIndex=(page-1)*limit;
+    const endIndex=page*limit;
+
+    // const results={}
+
+    // if (endIndex < students.length){
+    //     results.next={
+    //         page:page+1,
+    //         limit:limit,
+    //     }
+    // };
+
+    // if (startIndex > 0){
+    //     results.previous={
+    //         page:page-1,
+    //         limit:limit,
+    //     }
+    // };
+
     try {
-        res.render('./allstudents')
+        const students = (await dataMapper.getStudentsPagination(limit,startIndex)).rows;
+        res.render('./allstudents',{students})
     } catch (error) {
         console.error(error)
     }
