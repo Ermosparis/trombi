@@ -79,3 +79,13 @@ exports.addStudent = async(req,res) => {
     }
   }
 }
+
+exports.getStudentsList=async(req,res)=>{
+    const {page}=req.query;
+    const{limit}=req.query;
+    try {
+        res.render('./allstudents')
+    } catch (error) {
+        console.error(error)
+    }
+}
