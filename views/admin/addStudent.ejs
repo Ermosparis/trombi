@@ -2,15 +2,17 @@
 <h2>Ajouter un étudiant</h2>
 <%- include('../partials/nav.ejs') %>
 
-<div class="container">
+<div class="container d-flex justify-content-center">
   <form action="/admin/student/add" method="post">
     <div class="form-group">
       <label for="promo">Promotion :</label>
-      <select name="promo" id="promo">
-        <% for (promo of promos) { %>
-        <option name="<%= promo.name %>" value="<%= promo.id %>"><%= promo.name %></option>
-        <% } %>
-      </select>
+      <div>
+        <select name="promo" id="promo">
+          <% for (promo of promos) { %>
+          <option name="<%= promo.name %>" value="<%= promo.id %>"><%= promo.name %></option>
+          <% } %>
+        </select>
+      </div>
     </div>
 
     <div class="form-group">
